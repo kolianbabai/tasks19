@@ -24,7 +24,7 @@ CA Canada
 package com.javarush.task.task19.task1903;
 
 /* 
-Адаптация нескольких интерфейсов
+Адаптация нескольких интерфейсов _ проверка работы git_
 */
 
 import java.util.HashMap;
