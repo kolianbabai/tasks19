@@ -20,6 +20,25 @@
              return new Person(strings[0],strings[1],strings[2],docDate);
          }
 
+          Person person;
+
+                     File file = new File("/home/bns/1.txt");
+                     Scanner sc = new Scanner(file);
+                     String[] line = null;
+
+                     while (sc.hasNextLine()){
+                         line = sc.nextLine().split(" ");
+                         break;
+                     }
+                     String dateString = line[3] + line[4] + line[5];
+
+                     Date date = Date.valueOf(dateString);
+
+                     person = new Person(line[0], line[1], line[2], date);
+
+                     return person;
+                 }
+
 Требования:  
 
     PersonScanner должен быть интерфейсом.
