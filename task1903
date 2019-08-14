@@ -5,6 +5,8 @@ UA Ukraine
 RU Russia
 CA Canada
 Дополнить телефонный номер нулями до 10 цифр при необходимости (смотри примеры).
+>>   50 123 45 67
+>> (050)123-45-67
 Обратите внимание на формат вывода фамилии и имени человека.
 Требования:
 
@@ -22,7 +24,7 @@ CA Canada
 
 package com.javarush.task.task19.task1903;
 
-/* 
+/*
 Адаптация нескольких интерфейсов
 */
 
@@ -32,7 +34,7 @@ import java.util.Map;
 public class Solution {
     public static Map<String, String> countries = new HashMap<String, String>();
 
-    static {
+    static{
         countries.put("UA", "Ukraine");
         countries.put("RU", "Russia");
         countries.put("CA", "Canada");
@@ -42,10 +44,9 @@ public class Solution {
 
     }
 
-    public static class IncomeDataAdapter implements Customer, Contact {
+    public static class IncomeDataAdapter implements Customer, Contact{
 
-        private IncomeData data;
-        String key;
+       private IncomeData data;
 
         public IncomeDataAdapter(IncomeData data) {
             this.data = data;
@@ -58,17 +59,21 @@ public class Solution {
 
         @Override
         public String getCountryName() {
-            return (String) data.getCountryCode(countries.get("UA"));
+            return countries.get(data.getCountryCode());
         }
 
         @Override
         public String getName() {
-            return null;
+            return data.getContactFirstName();
         }
 
         @Override
         public String getPhoneNumber() {
-            return null;
+            String phoneNumber = Integer.toString(data.getPhoneNumber());
+            while (phoneNumber.length() != 10) {
+                phoneNumber = "0" + phoneNumber;
+            }
+            return phoneNumber;
         }
     }
 

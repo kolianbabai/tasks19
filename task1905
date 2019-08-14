@@ -28,22 +28,108 @@ CA Canada
 
 package com.javarush.task.task19.task1905;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-/* 
-Закрепляем адаптер
-*/
 
 public class Solution {
     public static Map<String,String> countries = new HashMap<String,String>();
 
+    static{
+        countries.put("UA", "Ukraine");
+        countries.put("RU", "Russia");
+        countries.put("CA", "Canada");
+    }
+
     public static void main(String[] args) {
+
+
+//        String keyToValue = null;
+//        Collection<String> collection= countries.keySet();
+//
+//        for (String key : collection) {
+//            String obj = countries.get(key);
+//            if (key != null) {
+//                // customer.getCountryName() -- то, по чему хотим найти
+//                if ("Ukraine".equals(obj)) {
+//                    keyToValue = key;// нашли наше значение и возвращаем  ключ
+//                }
+//            }
+//        }
+//        System.out.println(keyToValue);
+
+//        String string = "+38(050)123-45-67";
+//        String[] elements ={"\\(", "\\)", "-"};
+//        for (int i = 0; i < elements.length ; i++) {
+//            String string2 = string.replaceAll(elements[i], "");
+//            string = string2;
+//        }
+//
+//
+//        System.out.println(string);
 
     }
 
-    public static class DataAdapter {
+    public static class DataAdapter implements RowItem{
+        private Customer customer;
+        private Contact contact;
+
         public DataAdapter(Customer customer, Contact contact) {
+            this.customer = customer;
+            this.contact = contact;
+        }
+
+        @Override
+        public String getCountryCode() {
+
+            String keyToValue = null;
+            Collection<String> collection= countries.keySet();
+
+            for (String key : collection) {
+                String obj = countries.get(key);
+                if (key != null) {
+                    // customer.getCountryName() -- то, по чему хотим найти
+                    if (customer.getCountryName().equals(obj)) {
+                       keyToValue = key;// нашли наше значение и возвращаем  ключ
+                    }
+                }
+            }
+            return keyToValue;
+        }
+
+        @Override
+        public String getCompany() {
+            return customer.getCompanyName();
+        }
+
+        @Override
+        public String getContactFirstName() {
+
+            String [] names = contact.getName().split(", ");
+
+            return names[1];
+        }
+
+        @Override
+        public String getContactLastName() {
+
+            String [] names = contact.getName().split(", ");
+
+            return names[0];
+        }
+
+        @Override
+        public String getDialString() {
+
+            String string = contact.getPhoneNumber();
+            String[] elements ={"\\(", "\\)", "-"};
+            for (int i = 0; i < elements.length ; i++) {
+                String string2 = string.replaceAll(elements[i], "");
+                string = string2;
+            }
+
+            return "callto://" + string;
         }
     }
 
