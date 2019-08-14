@@ -29,6 +29,24 @@ package com.javarush.task.task19.task1906;
 */
 
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        FileReader reader = new FileReader(br.readLine());
+        FileWriter writer = new FileWriter(br.readLine());
+
+//        FileReader reader = new FileReader("C:\\Users\\ELX\\Documents\\002.txt");
+//        FileWriter writer = new FileWriter("C:\\Users\\ELX\\Documents\\004.txt");
+
+        while (reader.ready()) //пока есть непрочитанные байты в потоке ввода
+        {
+            int data = reader.read(); //читаем один символ (char будет расширен до int)
+            if(data%2 == 0){
+                writer.write(data);
+            }
+        }
+        br.close();
+        reader.close();
+        writer.close();
     }
 }
