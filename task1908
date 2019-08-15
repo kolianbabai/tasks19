@@ -22,3 +22,41 @@
     Программа должна записывать во второй файл все числа, через пробел, из первого файла (используй BufferedWriter с конструктором FileWriter).
     •
     Поток записи в файл (BufferedWriter) должен быть закрыт.
+
+
+    import java.io.*;
+    import java.util.ArrayList;
+
+    public class Solution {
+        public static void main(String[] args) throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+             BufferedReader brFileReader = new BufferedReader(new FileReader(br.readLine()));
+             BufferedWriter brFileWriter = new BufferedWriter(new FileWriter(br.readLine()));
+            br.close();
+
+            ArrayList<String[]> arrayList = new ArrayList<>();
+            String[] strings = null;
+
+            while (true)
+            {
+                String line = brFileReader.readLine();
+                if(line == null){break;}
+                strings = line.split(" ");
+                arrayList.add(strings);
+            }
+            brFileReader.close();
+
+           for(String[] s: arrayList){
+               for (int i = 0; i < s.length ; i++) {
+                   try {
+                       int num = Integer.parseInt(s[i]);
+                       brFileWriter.write(num + " ");
+                   } catch (NumberFormatException e) {
+                   }
+
+               }
+           }
+
+           brFileWriter.close();
+        }
+    }

@@ -17,3 +17,23 @@
     Программа должна записывать во второй файл содержимое первого файла, где заменены все точки "." на знак "!" (Для записи в файл используй BufferedWriter с конструктором FileWriter).
     •
     Поток записи в файл (BufferedWriter) должен быть закрыт.
+
+    import java.io.*;
+
+    public class Solution {
+        public static void main(String[] args) throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+             BufferedReader brFileReader = new BufferedReader(new FileReader(br.readLine()));
+             BufferedWriter brFileWriter = new BufferedWriter(new FileWriter(br.readLine()));
+            br.close();
+
+            while (true)
+            {
+                String line = brFileReader.readLine();
+                if(line == null){break;}
+                brFileWriter.write(line.replace(".", "!") + "\n" );
+            }
+            brFileReader.close();
+            brFileWriter.close();
+        }
+    }

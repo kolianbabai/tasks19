@@ -31,10 +31,34 @@ package com.javarush.task.task19.task1913;
 Выводим только цифры
 */
 
+import java.io.*;
+
 public class Solution {
     public static TestString testString = new TestString();
 
     public static void main(String[] args) {
+
+            PrintStream consoleStream = System.out;
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            PrintStream stream = new PrintStream(outputStream);
+            System.setOut(stream);
+
+            testString.printSomething();
+
+            String result = outputStream.toString();
+            System.setOut(consoleStream);
+
+        String [] resultChars = result.split("");
+
+        for (int i = 0; i < result.length() ; i++) {
+
+            int resultNumber;
+            try {
+              resultNumber = Integer.parseInt(resultChars[i]);
+                System.out.print(resultNumber);
+            } catch (NumberFormatException e) {
+            }
+        }
     }
 
     public static class TestString {
@@ -43,4 +67,3 @@ public class Solution {
         }
     }
 }
-

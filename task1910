@@ -17,3 +17,32 @@
     Поток чтения из файла (BufferedReader) должен быть закрыт.
     •
     Программа должна записывать во второй файл содержимое первого файла, где удалены все знаки пунктуации, включая символы новой строки (Для записи в файл используй BufferedWriter с конструктором FileWriter).
+
+
+    import java.io.*;
+
+    public class Solution {
+        public static void main(String[] args) throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader brFileReader = new BufferedReader(new FileReader(br.readLine()));
+             BufferedWriter brFileWriter = new BufferedWriter(new FileWriter(br.readLine()));
+
+            br.close();
+           String [] strings = new String[]{" ", "-",",", "\\.", "\\)", "\\(", ":", ";", "/", "\\[", "\\]", "\\+", "=", "\n", "!", "\\?", "\\{", "\\}"};
+
+            while (true)
+            {
+                String line = brFileReader.readLine();
+
+                if(line == null){break;}
+
+                for (int i = 0; i < strings.length ; i++) {
+                    line = line.replaceAll( strings[i], "");
+                }
+               brFileWriter.write(line);
+
+            }
+            brFileReader.close();
+            brFileWriter.close();
+        }
+    }
