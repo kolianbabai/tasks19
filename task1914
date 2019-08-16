@@ -61,7 +61,8 @@ public class Solution {
         }else if(resultChars[1].equals("*")) {
             c = a * b;
         }
-        System.out.println(a + " " + resultChars[1] + " " + b + " " + resultChars[3] + " " + c);
+
+        System.out.println(String.format("%d %s %d %s %d", a, resultChars[1], b, resultChars[3], c));
 
 
     }

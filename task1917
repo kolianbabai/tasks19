@@ -14,31 +14,62 @@
 Требования:
 
     •
-    Класс FileConsoleWriter должен содержать приватное поле FileWriter fileWriter, которое не должно быть сразу проинициализировано.
+    Класс FileConsoleWriter должен содержать приватное поле FileWriter fileWriter,
+     которое не должно быть сразу проинициализировано.
     •
     Класс FileConsoleWriter должен иметь пять конструкторов которые инициализируют fileWriter для записи.
     •
-    Класс FileConsoleWriter должен содержать метод write(char[] cbuf, int off, int len) throws IOException, в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
+    Класс FileConsoleWriter должен содержать метод write(char[] cbuf, int off, int len) throws IOException,
+    в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
     •
-    Класс FileConsoleWriter должен содержать метод write(int c) throws IOException, в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
+    Класс FileConsoleWriter должен содержать метод write(int c) throws IOException,
+    в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
     •
-    Класс FileConsoleWriter должен содержать метод write(String str) throws IOException, в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
+    Класс FileConsoleWriter должен содержать метод write(String str) throws IOException,
+     в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
     •
-    Класс FileConsoleWriter должен содержать метод write(String str, int off, int len) throws IOException, в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
+    Класс FileConsoleWriter должен содержать метод write(String str, int off, int len) throws IOException,
+     в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
     •
-    Класс FileConsoleWriter должен содержать метод write(char[] cbuf) throws IOException, в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
+    Класс FileConsoleWriter должен содержать метод write(char[] cbuf) throws IOException,
+    в котором данные для записи должны записываться в fileWriter и дублироваться в консоль.
     •
-    Класс FileConsoleWriter должен содержать метод close() throws IOException, в котором должен вызываться такой же метод поля fileWriter.
+    Класс FileConsoleWriter должен содержать метод close() throws IOException,
+     в котором должен вызываться такой же метод поля fileWriter.
+
 package com.javarush.task.task19.task1917;
 
-/* 
-Свой FileWriter
-*/
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class FileConsoleWriter {
+public class FileConsoleWriter{
+    private FileWriter fileWriter;
+
+    public FileConsoleWriter(FileWriter fileWriter) {
+        this.fileWriter = fileWriter;
+    }
+
+    public void write(char[] cbuf, int off, int len) throws IOException {
+
+    }
+    public void write(int c) throws IOException{
+
+    }
+    public void write(String str) throws IOException{
+
+    }
+    public void write(String str, int off, int len){
+
+    }
+    public void write(char[] cbuf) throws IOException{
+
+    }
+    public void close() throws IOException{
+        fileWriter.close();
+    }
+
+
     public static void main(String[] args) {
 
     }
-
 }
-
