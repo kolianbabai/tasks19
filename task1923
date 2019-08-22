@@ -18,10 +18,79 @@
 package com.javarush.task.task19.task1923;
 
 /* 
-Слова с цифрами
+Слова с цифрами  еще можно вот так java.util.Array.equals(number1, number2)
 */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String [] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
+        FileWriter fileWriter = new FileWriter(args[1]);
+
+        while (true){
+            String string = bufferedReader.readLine();
+            if(string == null){break;}
+            String [] strings1 = string.split(" ");
+
+            for (int i = 0; i < strings1.length; i++) {
+                String [] strings2 = strings1[i].split("");
+
+                for (int j = 0; j < strings2.length ; j++) {
+                    for (int k = 0; k < numbers.length; k++) {
+                        if(strings2[j].equals(numbers[k])){
+                            fileWriter.write(strings1[i] + " ");
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        bufferedReader.close();
+        fileWriter.close();
+    }
+}
+
+
+// решение №2
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        String [] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
+        FileWriter fileWriter = new FileWriter(args[1]);
+
+        while (true){
+            String string = bufferedReader.readLine();
+            if(string == null){break;}
+            String [] strings1 = string.split(" ");
+
+            for (int i = 0; i < strings1.length; i++) {
+                for (int j = 0; j < numbers.length; j++) {
+                    if(strings1[i].contains(numbers[j])){
+                        fileWriter.write(strings1[i] + " ");
+                        break;
+                    }
+                    }
+                }
+            }
+
+
+        bufferedReader.close();
+        fileWriter.close();
     }
 }

@@ -26,11 +26,35 @@
 
 package com.javarush.task.task19.task1926;
 
-/* 
+/*
 Перевертыши
 */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader buffFile = new BufferedReader(new FileReader(buff.readLine()));
+
+        while (true){
+            String string = buffFile.readLine();
+            if(string == null){break;}
+            String[] strings = string.split("");
+            Collections.reverse(Arrays.asList(strings));
+            for(String s : strings){
+                System.out.print(s);
+            }
+            System.out.println();
+        }
+
+        buff.close();
+        buffFile.close();
     }
 }
