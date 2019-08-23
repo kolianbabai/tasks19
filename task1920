@@ -46,48 +46,83 @@ import java.util.*;
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
+     public static void main(String[] args) throws IOException {
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
-        ArrayList<String> arrString = new ArrayList<>();
-        ArrayList<Double> arrDouble = new ArrayList<>();
+         BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
+         ArrayList<String> arrString = new ArrayList<>();
+         ArrayList<Double> arrDouble = new ArrayList<>();
 
-        Map<String, Double> map = new HashMap<String, Double>();
+         Map<String, Double> map = new HashMap<String, Double>();
 
-        while (true) {
-            String s = bufferedReader.readLine();
-            if (s == null) {break;}
-            String[] strings = s.split(" ");
+         while (true) {
+             String s = bufferedReader.readLine();
+             if (s == null) {break;}
+             String[] strings = s.split(" ");
 
-            if (arrString.contains(strings[0])) {
-                int index = arrString.indexOf(strings[0]);
-                arrString.set(index, strings[0]);
-                arrDouble.set(index, arrDouble.get(index) + Double.parseDouble(strings[1]));
-                map.put(arrString.get(index), arrDouble.get(index));
-            } else {
-                arrString.add(strings[0]);
-                Double d = Double.parseDouble(strings[1]);
-                arrDouble.add(d);
-                map.put(strings[0], d);
+             if (arrString.contains(strings[0])) {
+                 int index = arrString.indexOf(strings[0]);
+                 arrString.set(index, strings[0]);
+                 arrDouble.set(index, arrDouble.get(index) + Double.parseDouble(strings[1]));
+                 map.put(arrString.get(index), arrDouble.get(index));
+             } else {
+                 arrString.add(strings[0]);
+                 Double d = Double.parseDouble(strings[1]);
+                 arrDouble.add(d);
+                 map.put(strings[0], d);
+             }
+         }
+
+         Double d = Collections.max(arrDouble);
+         arrString.clear();
+
+         for(Map.Entry<String, Double> item : map.entrySet()){
+            if(item.getValue().equals(d)){
+               arrString.add(item.getKey());
             }
-        }
+         }
 
-        Double d = Collections.max(arrDouble);
-        arrString.clear();
+         Collections.sort(arrString);
 
-        for(Map.Entry<String, Double> item : map.entrySet()){
-           if(item.getValue().equals(d)){
-              arrString.add(item.getKey());
-           }
-        }
+         for(String s: arrString){
+             System.out.println(s);
+         }
 
-        Collections.sort(arrString);
+         bufferedReader.close();
 
-        for(String s: arrString){
-            System.out.println(s);
-        }
+     }
+ }
 
-        bufferedReader.close();
 
-    }
-}
+ // решение №2
+
+ import java.io.*;
+ import java.util.*;
+ /*
+ Самый богатый
+ */
+
+ public class Solution {
+     public static void main(String[] args) throws IOException {
+         BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
+         Map<String, Double> treeMap = new TreeMap<String, Double>();
+         while (true) {
+             String s = bufferedReader.readLine();
+             if (s == null) {break;}
+             String[] strings = s.split(" ");
+
+             if (treeMap.containsKey(strings[0])) {
+                 treeMap.put(strings[0], treeMap.get(strings[0]) + Double.parseDouble(strings[1]));
+             } else {
+                 treeMap.put(strings[0], Double.parseDouble(strings[1]));
+             }
+         }
+         Double maxValueInMap=(Collections.max(treeMap.values()));  // This will return max value in the Hashmap
+
+         for(Map.Entry entry : treeMap.entrySet() ){
+             if(entry.getValue().equals(maxValueInMap)){
+                 System.out.println(entry.getKey());
+             }
+         }
+         bufferedReader.close();
+     }
+ }
