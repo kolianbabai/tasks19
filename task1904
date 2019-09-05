@@ -99,7 +99,7 @@ public class Solution {
             SimpleDateFormat format = new SimpleDateFormat("dd MM yyyy");
             Date myDate= format.parse(stringData);
 
-            Person person = new Person(strings[0], strings[1], strings[2], myDate);
+            Person person = new Person(strings[1], strings[2], strings[0], myDate);
 
             return person;
         }

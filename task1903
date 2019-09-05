@@ -46,7 +46,7 @@ public class Solution {
 
     public static class IncomeDataAdapter implements Customer, Contact{
 
-       private IncomeData data;
+        private IncomeData data;
 
         public IncomeDataAdapter(IncomeData data) {
             this.data = data;
@@ -64,7 +64,7 @@ public class Solution {
 
         @Override
         public String getName() {
-            return data.getContactFirstName();
+            return data.getContactLastName() + ", " + data.getContactFirstName();
         }
 
         @Override
@@ -73,7 +73,9 @@ public class Solution {
             while (phoneNumber.length() != 10) {
                 phoneNumber = "0" + phoneNumber;
             }
-            return phoneNumber;
+            String[] arr =  phoneNumber.split("");
+
+            return "+" + data.getCountryPhoneCode() + "(" + arr[0] + arr[1]+ arr[2] + ")" + arr[3] + arr[4]+ arr[5] + "-" + arr[6]  + arr[7] + "-" + arr[8] + arr[9];
         }
     }
 
