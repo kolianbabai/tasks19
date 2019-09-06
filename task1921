@@ -50,29 +50,39 @@ public class Solution {
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
 
-       while (true){
-           String s = bufferedReader.readLine();
-           if(s == null){break;}
-           arr.add(s);
-       }
+        while (true){
+            String s = bufferedReader.readLine();
+            if(s == null){break;}
+            arr.add(s);
+        }
 
-       bufferedReader.close();
+        bufferedReader.close();
 
-       for(String str : arr){
-           String [] strings = str.split(" ");
-           Collections.reverse(Arrays.asList(strings));
-           String stringName = "";
+        for(String str : arr){
+            String [] strings = str.split(" ");
+            Collections.reverse(Arrays.asList(strings));
+            String stringName = "";
 
-           for (int i = strings.length - 1 ; i > 2; i--) {
-             stringName = stringName + strings[i] + " ";
-           }
+            for (int i = strings.length - 1 ; i > 2; i--) {
+                if(i == 3) {
+                    stringName = stringName + strings[i];
+                    break;
+                }
+                stringName = stringName + strings[i] + " ";
 
-           arr2.add(stringName);
-           arr3.add(strings[2] + " " +  strings[1]  + " " +   strings[0]);
-       }
-           for (int i = 0; i < arr2.size() ; i++) {
-                Date birthDate = new SimpleDateFormat("dd M y").parse(arr3.get(i));
-                PEOPLE.add(new Person(arr2.get(i), birthDate));
+            }
+
+
+            arr2.add(stringName);
+            arr3.add(strings[2] + " " +  strings[1]  + " " +   strings[0]);
+        }
+        for (int i = 0; i < arr2.size() ; i++) {
+            Date birthDate = new SimpleDateFormat("dd M y").parse(arr3.get(i));
+            PEOPLE.add(new Person(arr2.get(i), birthDate));
+        }
+
+        for(Person person : PEOPLE){
+            System.out.println(person.getName() + " " + person.getBirthDate());
         }
     }
 }

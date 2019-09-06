@@ -19,30 +19,26 @@
     Программа должна записывать во второй файл содержимое первого файла, где удалены все знаки пунктуации, включая символы новой строки (Для записи в файл используй BufferedWriter с конструктором FileWriter).
 
 
-    import java.io.*;
+   import java.io.*;
 
-    public class Solution {
-        public static void main(String[] args) throws IOException {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            BufferedReader brFileReader = new BufferedReader(new FileReader(br.readLine()));
-             BufferedWriter brFileWriter = new BufferedWriter(new FileWriter(br.readLine()));
+   public class Solution {
+       public static void main(String[] args) throws IOException {
+           BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+           BufferedReader brFileReader = new BufferedReader(new FileReader(br.readLine()));
+           BufferedWriter brFileWriter = new BufferedWriter(new FileWriter(br.readLine()));
 
-            br.close();
-           String [] strings = new String[]{" ", "-",",", "\\.", "\\)", "\\(", ":", ";", "/", "\\[", "\\]", "\\+", "=", "\n", "!", "\\?", "\\{", "\\}"};
+           br.close();
 
-            while (true)
-            {
-                String line = brFileReader.readLine();
+           while (true)
+           {
+               String line = brFileReader.readLine();
 
-                if(line == null){break;}
+               if(line == null){break;}
 
-                for (int i = 0; i < strings.length ; i++) {
-                    line = line.replaceAll( strings[i], "");
-                }
-               brFileWriter.write(line);
+               brFileWriter.write(line.replaceAll("\\p{Punct}", ""));
 
-            }
-            brFileReader.close();
-            brFileWriter.close();
-        }
-    }
+           }
+           brFileReader.close();
+           brFileWriter.close();
+       }
+   }
