@@ -20,36 +20,43 @@ package com.javarush.task.task19.task1907;
 Считаем слово
 */
 
+package com.javarush.task.task19.task1907;
+
+
 import java.io.*;
-import java.util.ArrayList;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedReader brFileReader = new BufferedReader(new FileReader(br.readLine()));
-        br.close();
 
-        ArrayList<String[]> arrayList = new ArrayList<>();
-        String[] strings = null;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = br.readLine();
+        br.close();
+        BufferedReader fileIn = null;
         int count = 0;
 
-        while (true)
-        {
-            String line = brFileReader.readLine();
-            if(line == null){break;}
-            strings = line.split(" ");
-            arrayList.add(strings);
+        try {
+            fileIn = new BufferedReader(new FileReader(fileName));
+            while (fileIn.ready()) {
+                String s = fileIn.readLine();
+                String [] words = s.split("[\\W]");
+
+              for(String word: words){
+                  if(word.equals("world")){
+                      count++;
+                  }
+              }
+            }
+
+            System.out.println(count);
+
+            fileIn.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        brFileReader.close();
 
-       for(String[] s: arrayList){
-           for (int i = 0; i < s.length ; i++) {
-               if(s[i].equals("world")){
-                   count++;
-               }
-           }
-       }
 
-        System.out.println(count);
     }
 }
